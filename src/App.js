@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from 'react-router-dom'
+import ByPro from './views/byPro'
+import Deposit from './views/deposit'
+import Login from './views/login'
+import Register from './views/register'
+import VideoList from './views/videoList'
+import Withdraw from './views/withdraw'
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Routes>
+      <Route path='/' element={<VideoList />} />
+      <Route path='/login' element={<Login />} />
+      <Route path='/register' element={<Register />} />
+      <Route path='/withdraw' element={<Withdraw />} />
+      <Route path='/deposit' element={<Deposit />} />
+      <Route path='/bypro' element={<ByPro />} />
+    </Routes>
+  )
 }
-
-export default App;
