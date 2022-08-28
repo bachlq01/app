@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useCookies } from 'react-cookie';
 import { NotificationManager } from 'react-notifications';
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 
 const Login = () => {
-    const [setCookie] = useCookies(['cookie-name']);
+    const [cookie,setCookie] = useCookies(['cookie-name']);
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate()
 
     const onSubmit = async () => {
         const { email, password } = data;
@@ -19,6 +20,7 @@ const Login = () => {
             setCookie('uid', res.message.email, { path: '/' });
             setLoading(false);
             NotificationManager.success('Success', 'Success');
+            navigate("/profile")
         } catch (err) {
             setLoading(false);
             NotificationManager.error('Login fail', 'Fail');
@@ -61,8 +63,8 @@ const Login = () => {
                         backgroundImage: "linear-gradient(to right, pink , red)",
                         borderWidth: 0
                     }}>
-                        <div class="spinner-border spinner-border-sm text-light" role="status">
-                            <span class="sr-only"></span>
+                        <div className="spinner-border spinner-border-sm text-light" role="status">
+                            <span className="sr-only"></span>
                         </div>
                     </button>
             }

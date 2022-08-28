@@ -72,8 +72,8 @@ const Register = () => {
                         backgroundImage: "linear-gradient(to right, pink , red)",
                         borderWidth: 0
                     }}>
-                        <div class="spinner-border spinner-border-sm text-light" role="status">
-                            <span class="sr-only"></span>
+                        <div className="spinner-border spinner-border-sm text-light" role="status">
+                            <span className="sr-only"></span>
                         </div>
                     </button>
             }

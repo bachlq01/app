@@ -22,7 +22,7 @@ const Card = (id) => {
     }, [id]);
 
     useEffect(() => {
-        if (id.index === count && ready && count > 0) {
+        if (id.index === count) {
             setPlaying(true)
         }
     }, [count, id, ready])
@@ -32,7 +32,7 @@ const Card = (id) => {
             fetch("https://us-central1-babu-33902.cloudfunctions.net/wallet", {
                 method: "POST",
                 body: JSON.stringify({
-                    uid:"uid", arrData:arr
+                    uid: "uid", arrData: arr
                 })
             })
         }
@@ -46,14 +46,12 @@ const Card = (id) => {
                 width="auto"
                 height="auto"
                 playing={playing}
-                onReady={() => {
-                    setReady(true)
-                }}
+                controls
                 onPlay={() => {
                     dispath(setValue(id.index))
                 }}
                 onPause={() => {
-                    play.current.seekTo(3, 'seconds');
+                    play.current.seekTo(30, 'seconds');
                     if (count < id.length) {
                         setPlaying(false)
                         dispath(addToArrData(id.id))
@@ -62,7 +60,7 @@ const Card = (id) => {
                 }}
             />
             <div className="card-body">
-                <p className="card-text">{title}</p>
+                <p className="card-text">{JSON.stringify(playing)}{title}</p>
             </div>
         </div>
     )
