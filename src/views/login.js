@@ -17,6 +17,11 @@ const Login = () => {
                 method: "POST",
                 body: JSON.stringify({ email, password })
             }).then(res => res.json());
+            if(!res.status){
+                setLoading(false);
+                NotificationManager.error('Login fail', 'Fail');
+                return;
+            }
             setCookie('uid', res.message.email, { path: '/' });
             setLoading(false);
             NotificationManager.success('Success', 'Success');

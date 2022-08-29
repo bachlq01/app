@@ -7,7 +7,7 @@ a { text-decoration: none; }
 
 .main-header {
   height: 56px;
-  z-index: 99999;
+  z-index: 9999999999999999;
   padding: 5px;
   text-align: center;
   color: white;
@@ -69,7 +69,7 @@ a { text-decoration: none; }
 
 #main-nav:target {
   width: 70%;
-  z-index: 1;
+  z-index: 9999999999999999;
 }
 #main-nav:target + .page-wrap {
   .open-menu {

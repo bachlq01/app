@@ -15,10 +15,20 @@ const VideoList = () => {
     }
 
     return (
-        <div style={{ margin: 20 }}>
+        <div style={{ margin: 20, position: "relative" }}>
             {data.map((e, i) => (
                 <Card key={e.id} id={e.id} index={i} length={data.length} />
             ))}
+            <div style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                zIndex: 1000000
+            }}>
+
+            </div>
         </div>
     )
 }

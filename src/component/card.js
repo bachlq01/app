@@ -1,8 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
 import ReactPlayer from 'react-player/lazy'
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 import { addToArrData } from "../stores/arrData";
 import { increment, setValue } from "../stores/count";
+import { setLoad } from "../stores/loadVideo";
 
 const Card = (id) => {
     const play = useRef(null);
@@ -23,7 +26,7 @@ const Card = (id) => {
 
     useEffect(() => {
         if (id.index === count) {
-            setPlaying(true)
+            setPlaying(true);
         }
     }, [count, id, ready])
 
@@ -42,25 +45,25 @@ const Card = (id) => {
         <div className="card" style={{ width: "100%" }}>
             <ReactPlayer
                 ref={play}
-                url={"https://www.youtube.com/watch?v=" + id.id}
+                url={"http://www.youtube.com/embed/" + id.id}
                 width="auto"
                 height="auto"
                 playing={playing}
-                controls
-                onPlay={() => {
-                    dispath(setValue(id.index))
-                }}
+                // onReady={()=>{
+                //     dispath(setLoad())
+                // }}
+                // onPlay={() => {
+                //     dispath(setValue(true))
+                // }}
                 onPause={() => {
-                    play.current.seekTo(30, 'seconds');
-                    if (count < id.length) {
-                        setPlaying(false)
-                        dispath(addToArrData(id.id))
-                        dispath(increment());
-                    }
+                    play.current.seekTo(3, 'seconds');
+                    setPlaying(false)
+                    dispath(addToArrData(id.id))
+                    dispath(increment());
                 }}
             />
             <div className="card-body">
-                <p className="card-text">{JSON.stringify(playing)}{title}</p>
+                <p className="card-text">{title}</p>
             </div>
         </div>
     )

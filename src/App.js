@@ -18,7 +18,6 @@ const Layout = () => {
   const location = useLocation();
   const dispath = useDispatch()
   useEffect(() => {
-    console.log(cookie.uid)
     if (!cookie.uid || cookie.uid == "undefined" && location.pathname !== "/register") {
       return navigate("/login");
     }
@@ -41,10 +40,10 @@ const Layout = () => {
         <a className="close-menu" href="#" onClick={() => { navigate("/") }}>
           <img width={56} src={mainLogo} />
         </a>
-        <a className="close-menu" href="#" onClick={() => { navigate("/") }}><i className="fa fa-home" style={{ paddingRight: 15 }}></i>Dashboard</a>
+        <a className="close-menu" href="#" onClick={() => { navigate("/profile") }}><i className="fa fa-user" style={{ paddingRight: 15 }}></i>Profile</a>
+        <a className="close-menu" href="#" onClick={() => { navigate("/") }}><i className="fa fa-home" style={{ paddingRight: 15 }}></i>Video</a>
         <a className="close-menu" href="#" onClick={() => { navigate("/withdraw") }}><i className="fa fa-credit-card" style={{ paddingRight: 15 }}></i>Withdraw</a>
         <a className="close-menu" href="#" onClick={() => { navigate("/deposit") }}><i className="fa fa-credit-card" style={{ paddingRight: 15 }}></i>Deposit</a>
-        <a className="close-menu" href="#" onClick={() => { navigate("/profile") }}><i className="fa fa-user" style={{ paddingRight: 15 }}></i>Profile</a>
         <a className="close-menu" href="#" onClick={() => { navigate("/bypro") }}><i className="fa fa-star" style={{ paddingRight: 15 }}></i>Plan change</a>
         <a className="close-menu" href="#" onClick={() => { removeCookie("uid"); navigate("/login") }}><i className="fa fa-sign-out" style={{ paddingRight: 15 }}></i>Signout</a>
       </nav>
