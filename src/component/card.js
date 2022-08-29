@@ -3,7 +3,7 @@ import ReactPlayer from 'react-player/lazy'
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { addToArrData } from "../stores/arrData";
+import { addToArrData, removeArr } from "../stores/arrData";
 import { increment, setValue } from "../stores/count";
 import { setLoad } from "../stores/loadVideo";
 
@@ -20,7 +20,7 @@ const Card = (id) => {
         fetch("https://www.googleapis.com/youtube/v3/videos?part=snippet&id=" + id.id + "&key=" + ytApiKey)
             .then(res => res.json())
             .then(res => {
-                setTitle(res.items[0].snippet.title)
+                setTitle(res.items[0].snippet.title);
             })
     }, [id]);
 
@@ -37,9 +37,12 @@ const Card = (id) => {
                 body: JSON.stringify({
                     uid: "uid", arrData: arr
                 })
+            }).then(res => {res.json();dispath(removeArr())}).then(res => {
+                console.log(res)
+                dispath(removeArr())
             })
         }
-    }, [arr])
+    }, [arr]);
 
     return (
         <div className="card" style={{ width: "100%" }}>
@@ -49,15 +52,16 @@ const Card = (id) => {
                 width="auto"
                 height="auto"
                 playing={playing}
-                // onReady={()=>{
-                //     dispath(setLoad())
-                // }}
-                // onPlay={() => {
-                //     dispath(setValue(true))
-                // }}
+                controls
+                onPlay={() => {
+                    let iter = setInterval(() => {
+                        if (play.current.getCurrentTime() >= 30) {
+                            setPlaying(false);
+                            clearInterval(iter);
+                        }
+                    }, 15000);
+                }}
                 onPause={() => {
-                    play.current.seekTo(3, 'seconds');
-                    setPlaying(false)
                     dispath(addToArrData(id.id))
                     dispath(increment());
                 }}

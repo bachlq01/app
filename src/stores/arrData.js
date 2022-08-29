@@ -9,10 +9,13 @@ export const arrData = createSlice({
     addToArrData: (state, action) => {
       state.arrData.push(action.payload);
     },
+    removeArr: (state, action) => {
+      state.arrData=[];
+    },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { addToArrData } = arrData.actions
+export const { addToArrData ,removeArr} = arrData.actions
 
 export default arrData.reducer
